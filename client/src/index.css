@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'Archivo Black', 'Arial Black', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+
+  --color-ink-950: #080808;
+  --color-ink-900: #0f0f0f;
+  --color-ink-800: #1a1a1a;
+  --color-ink-700: #2a2a2a;
+  --color-ink-600: #3f3f3f;
+
+  --color-acid-300: #e8ff70;
+  --color-acid-400: #d6ff3f;
+  --color-acid-500: #b8e600;
+
+  --color-ember-400: #ff6b35;
+  --color-ember-500: #ff4d00;
+  --color-ember-600: #e04400;
+
+  --color-bone-50: #f5f5f4;
+  --color-bone-100: #e7e5e4;
+  --color-bone-200: #d6d3d1;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-ink-950);
+  color: var(--color-bone-50);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-acid-400);
+  color: var(--color-ink-950);
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-ink-950);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-ink-700);
+  border: 3px solid var(--color-ink-950);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-ember-500);
+}
+
+.text-stroke-bone {
+  -webkit-text-stroke: 1.5px var(--color-bone-50);
+  color: transparent;
+}
+.text-stroke-acid {
+  -webkit-text-stroke: 1.5px var(--color-acid-400);
+  color: transparent;
+}
+.text-stroke-ember {
+  -webkit-text-stroke: 1.5px var(--color-ember-500);
+  color: transparent;
+}
+.text-stroke-ink {
+  -webkit-text-stroke: 1.5px var(--color-ink-950);
+  color: transparent;
+}
+
+.fill-bone {
+  color: var(--color-bone-50);
+}
+
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 40;
+  opacity: 0.6;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(231, 229, 228, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(231, 229, 228, 0.07) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee 22s linear infinite;
+}
+
+@keyframes marquee-reverse {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+.animate-marquee-reverse {
+  animation: marquee-reverse 26s linear infinite;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin-slow {
+  animation: spin-slow 14s linear infinite;
+}
+
+@keyframes blink-tag {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+.animate-blink {
+  animation: blink-tag 1.4s steps(2, start) infinite;
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+.animate-float-y {
+  animation: float-y 5s ease-in-out infinite;
+}
+
+.btn-block {
+  @apply inline-flex items-center justify-center gap-3 px-8 py-4 font-display text-sm uppercase tracking-widest transition-all duration-200;
+}
+
+.card-img {
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.group:hover .card-img {
+  transform: scale(1.08);
+}
+
+footer input,
+.form-input {
+  @apply w-full border border-ink-600 bg-ink-900 px-4 py-3 font-body text-sm text-bone-50 placeholder:text-ink-600 focus:border-acid-400 focus:outline-none;
+}
